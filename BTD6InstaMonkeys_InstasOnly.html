@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html style="margin: 0px;height: 100%;width: 100%;">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: btd5;
+            src: url('./Font/Oetztype.ttf');
+        }
+        
+        @font-face {
+            font-family: arialreg;
+            src: url('./Font/arialreg.ttf');
+        }
+        
+        @font-face {
+            font-family: LiberationSans;
+            src: url('./Font/LiberationSans.ttf');
+        }
+
+        .noselect {
+        -webkit-user-select: none; /* Safari */
+        user-select: none;
+        }
+
+        .instaHeader {
+            animation: instaHeader 0.4s;
+            -webkit-animation: instaHeader 0.4s;
+            animation-fill-mode: forwards; 
+        }
+
+        @keyframes instaHeader {
+            0% {
+                margin-top: -150px;
+            }
+            50% {
+                margin-top: 10px;
+            }
+            100% {
+                margin-top: 0px;
+            }
+        }
+
+        .instaHeaderExit {
+            animation: instaHeaderExit 0.4s;
+            -webkit-animation: instaHeaderExit 0.4s;
+            animation-fill-mode: forwards;  
+        }
+
+        @keyframes instaHeaderExit {
+            0% {
+                margin-top: 0px;
+                opacity: 1;
+            }
+            50% {
+            }
+            100% {
+                margin-top: -150px;
+                opacity: 0;
+            }
+        }
+
+        .clickEffect {
+            animation: clickEffect 0.4s;
+            -webkit-animation: clickEffect 0.4s;
+        }
+
+        @keyframes clickEffect {
+            0% {
+                transform: scale(1.0);
+            }
+            50% {
+                transform: scale(0.7);
+            }
+            100% {
+                transform: scale(1.0);
+            }
+        }
+
+        .enterEffect {
+            animation: enterEffect 0.1s;
+            -webkit-animation: enterEffect 0.1s;
+        }
+
+        @keyframes enterEffect {
+            0% {
+                transform: scale(0.8);
+            }
+            100% {
+                transform: scale(1.0);
+            }
+        }
+
+        .goBackSlide {
+            animation: slideRight 0.2s;
+            animation-fill-mode: forwards;  
+        }
+
+        @keyframes slideRight {
+            0% {
+                margin-left: -100px;
+            }
+            100% {
+                margin-left: 0px;
+                opacity: 1;
+            }
+        }
+
+        .goBackExit {
+            animation: slideLeft 0.2s;
+            animation-fill-mode: forwards;  
+        }
+
+        @keyframes slideLeft {
+            0% {
+                margin-left: 0px;
+                opacity: 1;
+            }
+            100% {
+                margin-left: -100px;
+                opacity: 0;
+            }
+        }
+
+        .containerPanel {
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            margin-left: 30px;
+            margin-top: 15px;
+        }
+
+        .containerBG {
+            width: 150px;
+            height: 150px;
+        }
+
+        .containerTower {
+            position: absolute;
+            height: 150px;
+            max-width: 150px;
+            width: auto;
+            margin-left: -150px;
+        }
+
+        .containerText {
+            position: absolute;
+            height: 30px;
+            width: 153px;
+            margin-top: -14px;
+            text-align: center;
+            color: white;
+            font-family: 'Luckiest Guy';
+            font-size: 18px;
+            line-height: 13px;
+            text-stroke: 0.7px black;
+            -webkit-text-stroke: 0.7px black;
+        }
+
+        .instaPanel {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin-left: 30px;
+            margin-top: 15px;
+        }
+
+        .instaBG {
+            width: auto;
+            height: auto;
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        .instaText {
+            position: absolute;
+            height: 30px;
+            width: 100px;
+            margin-top: 0;
+            text-align: center;
+            color: white;
+            font-family: 'Luckiest Guy';
+            font-size: 24px;
+            line-height: 13px;
+            text-stroke: 0.7px black;
+            -webkit-text-stroke: 0.7px black;
+        }
+        
+        .modal {
+            display: none;
+            z-index: 1;
+            padding: 0;
+            margin-top: 10px;
+            /*margin-left: -100px;*/
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0);
+        }
+        
+        .modal-content {
+            background-image: url("");
+            background-color: #fefefe;
+            margin: auto;
+            z-index: 1;
+            padding-top: 0px;
+            padding: 1px;
+            border: 1px solid #888;
+            width: 590px;
+            height: 450px;
+        }
+        
+        .close {
+            position: absolute;
+            padding: 0px;
+            color: #aaaaaa;
+            width: 40px;
+            height: 40px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .modal2 {
+            display: none;
+            z-index: 1;
+            padding: 0;
+            position: sticky;
+            top: 50%;
+            left: 50%;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0);
+        }
+        
+        .modal-content2 {
+            background-image: url("");
+            background-color: #fefefe;
+            margin: auto;
+            z-index: 1;
+            padding-top: 0px;
+            padding: 1px;
+            border: 1px solid #888;
+            width: 500px;
+            height: 450px;
+        }
+        
+        .close2 {
+            position: absolute;
+            padding: 0px;
+            color: #aaaaaa;
+            float: right;
+            width: 40px;
+            height: 40px;
+            font-weight: bold;
+        }
+        
+        .close2:hover,
+        .close2:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .container {
+            position: relative;
+            text-align: center;
+            color: white;
+            display: inline-block
+        }
+        
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            font-size: 24px;
+        }
+        
+        .slider {
+            -webkit-appearance: none;
+            width: 350px;
+            height: 15px;
+            border-radius: 5px;
+            background: #38200F;
+            outline: none;
+            margin-top: -1px;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 23px;
+            height: 24px;
+            border: 0;
+            margin-top: -1px;
+            background: url('./Images/UI/sliderbtn.png');
+            cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 23px;
+            height: 24px;
+            border: 0;
+            background: url('./Images/UI/sliderbtn.png');
+            cursor: pointer;
+        }
+        
+        .transition {
+            animation: scrollBanner 4.8s;
+            -webkit-animation: scrollBanner 4.8s;
+            width: 100%;
+            height: 100%;
+            animation-fill-mode: forwards;  
+        }
+        
+        .fadeout {
+            animation: fadeout 5.1s;
+            -webkit-animation: fadeout 5.0s;
+        }
+        
+        .headanim {
+            animation: headanim 5.0s;
+            -webkit-animation: headanim 5.0s;
+        }
+        
+        .bottomanim {
+            animation: bottomanim 5.0s;
+            -webkit-animation: bottomanim 5.0s;
+        }
+        
+        @keyframes scrollBanner {
+            0% {
+                left: -250px;
+            }
+            27% {
+                left: 55%;
+            }
+            90% {
+                left: 55%;
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+        
+        @keyframes bottomanim {
+            0% {
+                opacity: 0;
+            }
+            21% {
+                opacity: 0;
+            }
+            22% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        @keyframes headanim {
+            0% {
+                opacity: 0;
+            }
+            21% {
+                opacity: 0;
+            }
+            22% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        @keyframes fadeout {
+            0% {
+                opacity: 1;
+            }
+            95% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        p {
+            font-family: btd5;
+            color: white;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            background: #4A75B2;
+            border-radius: 7px;
+            border: 2px solid #5A8FD5;
+        }
+        
+        input {
+            text-align-last: center;
+            background-color: #436FA8;
+            font-family: btd5;
+            color: white;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            border-radius: 5px;
+            border-color: #2B466A;
+        }
+        
+        select {
+            text-align-last: center;
+            background-color: #436FA8;
+            font-family: btd5;
+            color: white;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            border-radius: 5px;
+            border-color: #2B466A;
+        }
+        
+        option {}
+        
+        button {
+            text-align-last: center;
+            background-color: #66AAFF;
+            font-family: btd5;
+            color: white;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            font-size: 18px;
+            border-radius: 8px;
+        }
+        
+        input[type='checkbox'] {
+            -webkit-appearance: none;
+            width: 30px;
+            height: 30px;
+            background: #34547F;
+            border-radius: 5px;
+            border: 2px solid #2B466A;
+        }
+        
+        input[type='checkbox']:checked {
+            background: url('./Images/UI/Checked.png');
+            background-size: 25px 25px;
+        }
+        
+        body {
+            margin: 0 auto;
+        }
+        
+        .inline {
+            display: inline-block;
+        }
+        
+        .content {
+            margin: 0px auto;
+            /*width: 590px;*/
+            right: 0;
+            left: 0;
+        }
+        
+        .bottom-right {
+            position: absolute;
+            bottom: 8px;
+            right: 16px;
+        }
+        
+        .center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        table,
+        th,
+        td {
+            border: 3px solid #436FA8;
+            border-collapse: collapse;
+            text-align: center;
+            font-family: Calibri;
+            color: white;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        }
+        
+        th,
+        td {
+            padding: 10px;
+        }
+        
+        tr {
+            background-color: #385D8D color: white;
+        }
+    </style>
+</head>
+</img>
+<div class="fadeout" id="loading" style="width:100%; height:100%;display:block;background-color: #9BE9FE;">
+    <img class="transition" src="./Images/UI/Loading/MonkasAce.gif" style="left:-250px;margin: 0;position: absolute; max-width: 250px;max-height: 250px;top: 50%;transform: translate(0%,-50%);">
+    <h1 id="headanim" class="headanim" style="width:350px;height:250px;transform: translate(-40%,-10%);position: absolute;left: 40%;top:50%;font-size: 50px;font-family:'Luckiest Guy';margin: 0;display: inline-block;color: white;">Step 1 of 8</h1>
+    <h2 id="bottomanim" class="bottomanim" style="text-align: center;width:750px;height:25px;transform: translate(-50%,-50%);position: absolute;left: 50%;display:inline-block;top:90%;font-size: 25px; font: 25px arial, sans-serif;margin: 0;display: inline-block;color: #82B8C6;">Unleashing Monkey Sun God</h2></img>
+</div>
+
+<body id="thebody" bgcolor="#5A8FD5" style="width:100%; height:100%;background-image: radial-gradient(circle, transparent 0%, rgba(0,0,0,1) 100%), url('./Images/UI/PowersPatternBg4.png');background-attachment: fixed;">
+    <!--<img src="./Images/UI/benbtn.png" style="position: absolute;top: 0;padding: 7px;right: 0%;border:0;margin-left: auto;margin-right: auto;" onclick="advancedmode()">-->
+    <div id="main" class="content" style="visibility: hidden;display:none;height: 100%;">
+        <div id="insta" style="height: 100%;">
+        <img id="goBack" src="./Images/UI/BackBtn.png" style="width: 80px;height: 80px;left: 5; top: 5;position: fixed;margin-left:-100px;opacity: 0" onclick="goBack()">
+        <!-- radial-gradient(circle, transparent 0%, rgba(0,0,0,1) 100%) -->
+        <!-- radial-gradient(circle, rgba(0,249,255,0) 0%, rgba(9,15,121,1) 35%, rgba(0,0,0,1) 100%) -->
+        <div id="instaMonkeysHeader" style="position: absolute;left: 50%;transform: translate(-50%, 0);">
+            <img id="instaLabel" src="./Images/UI/InstaMonkeysHeader.png" class="instaHeader" style="width: 500px;height: 90px;">
+            <!--<img id="goBack" src="./Images/UI/BackBtn.png" style="width: 80px;height: 80px;left: -340; top: 5;position: fixed;margin-left:-100px;opacity: 0" onclick="goBack()">-->
+        </div>
+        <div id="towerContainers" style="color: black;width:930px;height: auto;position: absolute;text-align: left;top: 100px;left: 50%;transform: translate(-50%, 0);">
+            
+        </div>
+        <div id="instaContainers" style="color: black;width:1000px;height: auto;position: absolute;text-align: left;left: 50%;transform: translate(-50%, 0px);padding-top:100px;">
+            
+        </div>
+    </div>
+            <div id="mobile" style="display: none;">
+                <button style="z-index: 2;position: relative;display:block;margin-top: 15px;" onclick="download()">Download JSON</button>
+                <textarea style="position: relative; margin-top: 15px;display: block;" id="output_m" rows="60" cols="70"></textarea>
+            </div>
+        </div>
+        <div id="desktop" style="display: none;">
+            <button style="z-index: 2;position: fixed; float:left; left:0%; top:0%;" onclick="download()">Download JSON</button>
+            <textarea style="position: fixed; float:left; left:0%; top:0%;margin-top: 35px" id="output" rows="60" cols="41"></textarea>
+        </div>
+        <script type="text/javascript">
+            document.getElementById("thebody").style.overflowX = "hidden";
+            setTimeout(function() {
+                document.getElementById('loading').style.visibility = "hidden"
+                document.getElementById('loading').style.display = "none"
+            }, 5000);
+            setTimeout(function() {
+                document.getElementById('main').style.visibility = "visible";
+                document.getElementById('main').style.display = "block";
+            }, 5000);
+            setTimeout(function() {
+                document.getElementById('headanim').innerHTML = "Step 2 of 8";
+            }, 3000);
+            setTimeout(function() {
+                document.getElementById('headanim').innerHTML = "Step 3 of 8";
+            }, 3200);
+            setTimeout(function() {
+                document.getElementById('headanim').innerHTML = "Step 4 of 8";
+            }, 3400);
+            setTimeout(function() {
+                document.getElementById('headanim').innerHTML = "Step 5 of 8";
+            }, 3600);
+            setTimeout(function() {
+                document.getElementById('headanim').innerHTML = "Step 6 of 8";
+            }, 3800);
+            setTimeout(function() {
+                document.getElementById('headanim').innerHTML = "Step 7 of 8";
+            }, 4000);
+            setTimeout(function() {
+                document.getElementById('headanim').innerHTML = "Step 8 of 8";
+            }, 4500);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Unleashing Monkey Sun God... - downloading";
+            }, 2200);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Downloading New Content - downloading";
+            }, 2500);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Downloading New Content - 0.00% - 0/248";
+            }, 2600);
+            /*var perc = 0;
+            for(var j=2600;j<3600;j=j+10){
+            	perc = perc + 0.01;
+            	var average = perc * 248;
+            	var p2 = perc * 100;
+            	var p3 = p2.toPrecision(3);
+            	var a = average.toPrecision(3);
+            	console.log("setTimeout(function(){  document.getElementById(\'bottomanim\').innerHTML = \"Downloading New Content - " + p3 + "% - " + a + "/248\";  }," + j +");");
+            }*/
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Downloading New Content - 1.00% - 2/248";
+            }, 2601);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Downloading New Content - 2.00% - 5/248";
+            }, 2610);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Downloading New Content - 3.00% - 7/248";
+            }, 2620);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Downloading New Content - 27.0% - 67/248";
+            }, 2860);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Downloading New Content - 37.0% - 92/248";
+            }, 2960);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Downloading New Content - 44.0% - 109/248";
+            }, 3030);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Downloading New Content - 75.0% - 186/248";
+            }, 3340);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Downloading New Content - 95.0% - 236/248";
+            }, 3540);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Downloading New Content - 99.0% - 246/248";
+            }, 3580);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Downloading New Content - 100% - 248/248";
+            }, 3590);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Training Monkeys... - downloading";
+            }, 3600);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Collecting Bananas... - downloading";
+            }, 3800);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Preparing Darts... - downloading";
+            }, 4000);
+            setTimeout(function() {
+                document.getElementById('bottomanim').innerHTML = "Taking a Break - finished";
+            }, 4500);
+
+            var saveData = {
+            "DartMonkey": {},
+            "BoomerangMonkey": {},
+            "BombShooter": {},
+            "TackShooter": {},
+            "IceMonkey": {},
+            "GlueGunner": {},
+            "SniperMonkey": {},
+            "MonkeySub": {},
+            "MonkeyBuccaneer": {},
+            "MonkeyAce": {},
+            "HeliPilot": {},
+            "MortarMonkey": {},
+            "DartlingGunner": {},
+            "Wizard": {},
+            "SuperMonkey": {},
+            "NinjaMonkey": {},
+            "Alchemist": {},
+            "Druid": {},
+            "BananaFarm": {},
+            "SpikeFactory": {},
+            "MonkeyVillage": {},
+            "EngineerMonkey": {}
+        };
+        var towers = ["DartMonkey", "BoomerangMonkey","BombShooter","TackShooter","IceMonkey","GlueGunner","SniperMonkey","MonkeySub","MonkeyBuccaneer","MonkeyAce","HeliPilot","MortarMonkey","DartlingGunner","Wizard","SuperMonkey","NinjaMonkey","Alchemist","Druid","BananaFarm", "SpikeFactory", "MonkeyVillage","EngineerMonkey"];
+        var towersEng = ["Dart Monkey", "Boomerang Monkey","Bomb Shooter","Tack Shooter","Ice Monkey","Glue Gunner","Sniper Monkey","Monkey Sub","Monkey Buccaneer","Monkey Ace","Heli Pilot","Mortar Monkey","Dartling Gunner","Wizard Monkey","Super Monkey","Ninja Monkey","Alchemist","Druid","Banana Farm", "Spike Factory", "Monkey Village","Engineer Monkey"];
+        var collectionOrder = ["520","502","510","501","500","250","052","150","051","050","205","025","105","015","005","420","402","410","401","400","240","042","140","041","040","204","024","104","014","004","320","302","310","301","300","230","032","130","031","030","203","023","103","013","003","220","202","210","201","200","022","120","021","020","102","012","002","110","101","100","011","010","001","000"]
+
+            window.addEventListener('load', () => {
+                makeContainers();
+            });
+
+            let makeContainers = () => {
+                let output = document.getElementById('towerContainers');
+                towers.forEach(t => {
+                    var panel = document.createElement('div');
+                    panel.className = 'containerPanel enterEffect';
+                    panel.id = `container${t}`;
+                    panel.addEventListener('click', function() {
+                        //this.classList.add = "clickEffect";
+                        clickContainer(t);
+                    });
+
+                    let container = document.createElement('img');
+                    container.className = 'containerBG';
+                    container.src = `./Images/UI/InstaTowersContainer.png`
+                    panel.appendChild(container);
+
+                    let newTower = document.createElement('img');
+                    newTower.className = 'containerTower';
+                    newTower.src = `./Images/TowerIcons/000-${t}.png`
+                    panel.appendChild(newTower);
+                    output.appendChild(panel);
+
+                    let newText = document.createElement('h1');
+                    newText.className = 'containerText';
+                    newText.innerHTML = towersEng[towers.indexOf(t)];
+                    panel.appendChild(newText);
+                    output.appendChild(panel);
+                });
+            }
+
+function clickContainer(type){
+    //Removeanim from header
+    //Add anim to other header
+    document.getElementById('towerContainers').style.display = "none";
+    document.getElementById('instaContainers').style.display = "block";
+    document.getElementById('instaContainers').innerHTML = "";
+    document.getElementById("goBack").classList.remove("goBackSlide");
+    document.getElementById("goBack").classList.remove("goBackExit");
+    document.getElementById("goBack").classList.add("goBackSlide");
+    document.getElementById("instaLabel").classList.remove("instaHeaderExit");
+    document.getElementById("instaLabel").classList.remove("instaHeader");
+    document.getElementById("instaLabel").classList.add("instaHeaderExit");
+    console.log(type);
+    generateInstas(type);
+
+}
+
+function goBack(){
+    document.getElementById('instaContainers').style.display = "none";
+    document.getElementById('towerContainers').style.display = "block";
+    document.getElementById("instaLabel").classList.remove("instaHeader");
+    document.getElementById("instaLabel").classList.remove("instaHeaderExit");
+    document.getElementById("instaLabel").classList.add("instaHeader");
+
+    document.getElementById("goBack").classList.remove("goBackSlide");
+    document.getElementById("goBack").classList.remove("goBackExit");
+    document.getElementById("goBack").classList.add("goBackExit");
+}
+
+function generateInstas(type) {
+    var instas = Object.keys(saveData[type]);
+    var instasSorted = [];
+
+    collectionOrder.forEach((instatype, i) => {
+        //if(instas.includes(instatype)){
+            instasSorted.push(instatype);
+        //}
+    });
+    instasSorted.forEach((instatype, i) => {
+                    var first = instatype.charAt(0);
+                    var second = instatype.charAt(1); 
+                    var third = instatype.charAt(2);
+
+                    var output = document.getElementById('instaContainers');
+                    var panel = document.createElement('div');
+                    panel.className = 'instaPanel enterEffect';
+                    panel.id = `instaPanel${instatype}-${type}`;
+                    /*panel.addEventListener('click', function() {
+                        //this.classList.add = "clickEffect";
+                        clickContainer(t);
+                    });*/
+
+                    let maximum;
+
+                    if(first > second && first > third){
+                        maximum = 1
+                    }
+                    else if(second > third && second > first){
+                        maximum = 2
+                    }
+                    else if(third > first && third > second){
+                        maximum = 3
+                    }
+                    else if(first == second) {
+                        maximum = 2   
+                    }
+                    else if(first == third) {
+                        maximum = 1
+                    }
+                    else if(second == third){
+                        maximum = 2
+                    }
+                    else {
+                        maximum = 3
+                    }
+
+                    let instaImgNum;
+                    switch(maximum) {
+                        case 1:
+                        instaImgNum = `${first}00`;
+                        break;
+                        case 2:
+                        instaImgNum = `0${second}0`;
+                        break;
+                        case 3:
+                        instaImgNum = `00${third}`;
+                        break;
+                    }
+
+                    let container = document.createElement('img');
+                    container.className = 'instaBG';
+                    container.src = `./Images/Insta/${instaImgNum}-${type}Insta.png`
+                    panel.appendChild(container);
+
+                    let newText = document.createElement('h1');
+                    newText.className = 'instaText';
+                    newText.innerHTML = `${first}-${second}-${third}`;
+                    panel.appendChild(newText);
+                    output.appendChild(panel);
+    });
+}
+
+function clickTower(type){
+
+}
+
+//on change of amount
+function changeInstaAmount(){
+
+}
+
+function addInsta(){
+    saveData[towers[0]] = {};
+    saveData[towers[0]]["000"] = 1;
+    saveData[towers[0]]["401"] = 1;
+    saveData[towers[0]]["500"] = 1;
+    saveData[towers[0]]["203"] = 1;
+    console.log(saveData);
+}
+
+function removeInsta(){
+
+}
+           
+
+            function finished() {
+                document.getElementById('output').innerHTML = JSON.stringify(challenge, null, 2);
+                document.getElementById('output_m').innerHTML = JSON.stringify(challenge, null, 2);
+            }
+
+            function download(data) {
+                var data = document.getElementById('output').innerHTML;
+                var filename = document.getElementById('id').value + " - " + document.getElementById('name').value;
+                var type = "text";
+                var a = document.createElement("a"),
+                    file = new Blob([data], {
+                        type: type
+                    });
+                if (window.navigator.msSaveOrOpenBlob) // IE10+
+                    window.navigator.msSaveOrOpenBlob(file, filename);
+                else { // Others
+                    var url = URL.createObjectURL(file);
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(function() {
+                        document.body.removeChild(a);
+                        window.URL.revokeObjectURL(url);
+                    }, 0);
+                }
+            }
+        </script>
+</body>
+</head>
+
+</html>

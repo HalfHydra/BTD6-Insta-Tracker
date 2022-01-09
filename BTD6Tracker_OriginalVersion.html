@@ -1,0 +1,656 @@
+<html>
+<head>
+    <style>
+        p {
+            color: white;
+            text-shadow:
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+            background: #4A75B2;
+            border-radius: 7px;
+            border: 2px solid #5A8FD5;
+        }
+
+        input {
+            /*text-align-last: center;*/
+            background-color: #436FA8;
+            color: white;
+            text-shadow:
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        body {
+            margin: 0 auto;
+            background-color: #5A8FD5;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        textarea {
+            color: white;
+            text-shadow:
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+            background: #4A75B2;
+            border-radius: 7px;
+            border: 2px solid #5A8FD5;
+            width: 60%;
+            height: 60%;
+        }
+
+        .instaHeader {
+            animation: instaHeader 0.4s;
+            -webkit-animation: instaHeader 0.4s;
+            animation-fill-mode: forwards; 
+        }
+
+        @keyframes instaHeader {
+            0% {
+                margin-top: -150px;
+            }
+            50% {
+                margin-top: 10px;
+            }
+            100% {
+                margin-top: 0px;
+            }
+        }
+
+        .instaHeaderExit {
+            animation: instaHeaderExit 0.4s;
+            -webkit-animation: instaHeaderExit 0.4s;
+            animation-fill-mode: forwards;  
+        }
+
+        @keyframes instaHeaderExit {
+            0% {
+                margin-top: 0px;
+            }
+            100% {
+                margin-top: -150px;
+            }
+        }
+
+        .clickEffect {
+            animation: clickEffect 0.4s;
+            -webkit-animation: clickEffect 0.4s;
+        }
+
+        @keyframes clickEffect {
+            0% {
+                transform: scale(1.0);
+            }
+            50% {
+                transform: scale(0.7);
+            }
+            100% {
+                transform: scale(1.0);
+            }
+        }
+
+        .goBackSlide {
+            animation: slideRight 0.2s;
+            animation-fill-mode: forwards;  
+        }
+
+        @keyframes slideRight {
+            0% {
+                margin-left: -100px;
+            }
+            100% {
+                margin-left: 0px;
+                opacity: 1;
+            }
+        }
+
+        .goBackExit {
+            animation: slideLeft 0.2s;
+            animation-fill-mode: forwards;  
+        }
+
+        @keyframes slideLeft {
+            0% {
+                margin-left: 0px;
+                opacity: 1;
+            }
+            100% {
+                margin-left: -100px;
+                opacity: 0;
+            }
+        }
+
+        .containerPanel {
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            margin-left: 30px;
+            margin-top: 15px;
+        }
+
+        .containerBG {
+            width: 150px;
+            height: 150px;
+        }
+
+        .containerTower {
+            position: absolute;
+            height: 150px;
+            max-width: 150px;
+            width: auto;
+            margin-left: -150px;
+        }
+
+        .containerText {
+            position: absolute;
+            height: 30px;
+            width: 153px;
+            margin-top: -14px;
+            text-align: center;
+            color: white;
+            font-family: 'Luckiest Guy';
+            font-size: 18px;
+            line-height: 13px;
+            text-stroke: 0.7px black;
+            -webkit-text-stroke: 0.7px black;
+        }
+
+        .instaPanel {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin-left: 30px;
+            margin-top: 15px;
+        }
+
+        .instaBG {
+            width: auto;
+            height: auto;
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        .instaText {
+            position: absolute;
+            height: 30px;
+            width: 100px;
+            margin-top: 0;
+            text-align: center;
+            color: white;
+            font-family: 'Luckiest Guy';
+            font-size: 24px;
+            line-height: 13px;
+            text-stroke: 0.7px black;
+            -webkit-text-stroke: 0.7px black;
+        }
+    </style>
+</head>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+<body>
+    <div>
+        <div style="background-image: url('./Images/UI/SubRibbon.png');background-size: 1165px 80px;background-position: center;background-repeat: no-repeat;padding:10px;margin-top: -8px;margin-left: -12px;position: sticky;
+    top: 0;z-index:9999">
+      <div style="margin: 0px auto;width: 1050px;right: 0;left: 0;">
+         <div class="cupbtn" style="width: 150px;height: 52px;display: inline-block;cursor: pointer;" onclick="changemode(0)">
+            <img src="./Images/UI/EnterCodeIcon.png" style="width: 55px;height: 55px;">
+            <p class='whiteoutline' style="margin-top: -30px;margin-left: 5px;font-family: 'Trebuchet MS';font-size: 15px;text-align: center;display: inline-block;vertical-align: middle;"> Enter Code </p>
+         </div>
+         <div class="cupbtn" style="width: 180px;height: 52px;display: inline-block;cursor: pointer;" onclick="changemode(1)">
+            <img src="./Images/UI/DailyChallengeBtn.png" style="width: 52px;height: 52px;">
+            <p class='whiteoutline' style="margin-top: -30px;margin-left: 5px;font-family: 'Trebuchet MS';font-size: 15px;text-align: center;display: inline-block;vertical-align: middle;"> Daily Challenges </p>
+         </div>
+         <div class="cupbtn" style="width: 125px;height: 52px;display: inline-block;cursor: pointer;" onclick="changemode(2)">
+            <img src="./Images/UI/OdysseyIcon.png" style="width: 50px;height: 50px;">
+            <p class='whiteoutline' style="margin-top: -30px;margin-left: 5px;font-family: 'Trebuchet MS';font-size: 15px;text-align: center;display: inline-block;vertical-align: middle;"> Odyssey </p>
+         </div>
+         <div class="cupbtn" style="width: 110px;height: 52px;display: inline-block;cursor: pointer;" onclick="changemode(3)">
+            <img src="./Images/UI/EventRaceIcon.png" style="width: 52px;height: 52px;">
+            <p class='whiteoutline' style="margin-top: -30px;margin-left: 5px;font-family: 'Trebuchet MS';font-size: 15px;text-align: center;display: inline-block;vertical-align: middle;"> Race </p>
+         </div>
+         <div class="cupbtn" style="width: 160px;height: 52px;display: inline-block;cursor: pointer;" onclick="changemode(4)">
+            <img src="./Images/UI/InstaMonkeysBtn.png" style="width: 52px;height: 52px;">
+            <p class='whiteoutline' style="margin-top: -30px;margin-left: 5px;font-family: 'Trebuchet MS';font-size: 15px;text-align: center;display: inline-block;vertical-align: middle;"> Insta Monkeys </p>
+         </div>
+         <div class="cupbtn" style="width: 178px;height: 52px;display: inline-block;cursor: pointer;" onclick="changemode(6)">
+            <img src="./Images/UI/ChallengeRulesBtn.png" style="width: 52px;height: 52px;">
+            <p class='whiteoutline' style="margin-top: -30px;margin-left: 10px;font-family: 'Trebuchet MS';font-size: 15px;text-align: center;display: inline-block;vertical-align: middle;"> Make Challenge </p>
+         </div>
+         <div class="cupbtn" style="width: 120px;height: 52px;display: inline-block;cursor: pointer;" onclick="changemode(5)">
+            <img src="./Images/UI/InfoBtn.png" style="width: 52px;height: 52px;">
+            <p class='whiteoutline' style="margin-top: -30px;margin-left: 5px;font-family: 'Trebuchet MS';font-size: 15px;text-align: center;display: inline-block;vertical-align: middle;"> Settings </p>
+         </div>
+      </div>
+   </div>
+
+   <div id="content" class="stripedbg" style="margin: 0px auto;width: auto;max-width: 1200px;height:auto;min-height: calc(100vh - 100px);/*height: calc(100vh - 100px);overflow-y: auto;overflow-x: auto;*/right: 0;left: 0;/*background-image: linear-gradient(to bottom, rgba(168, 207, 255, 0.9) 0%, rgba(3, 65, 202, 0.9) 100%), url('./Images/UI/fixedmktbg.png'); background-size: 394px auto;*/border: 5px solid #b5ceff;">
+
+    <div id="getchallenge" style="height: auto;">
+        <h1>Daily Challenge Browser</h1>
+        <input style="display: none;"type="file" id="file">
+        <br>
+        <input type="text" id="dcidtxt" value="943" oninput="dailychallengeid()">
+        <br>
+        <textarea character-set="UTF-8" id="dgdata"></textarea>
+        <br>
+        <br>
+        <!--<input type="button" value="Download" onclick="download()">-->
+        <input type="button" value="Generate" id="generate" onclick="generate()">
+        <input type="button" value="Generate Struct" id="generatestruct" onclick="generatestruct()">
+        <br>
+        <br>
+    </div>
+    <div id="dailychallenge" style="height: auto;">
+    </div>
+    <div id="odyssey" style="height: auto;">
+    </div>
+    <div id="race" style="height: auto;">
+    </div>
+    <div id="insta" style="display:none;height: 1000px;background-image: radial-gradient(circle, transparent 0%, rgba(0,0,0,1) 100%), url('./Images/UI/PowersPatternBg4.png');background-position: fixed;">
+        <!--<img src="./Images/UI/BackBtn.png" style="width: 80px;height: 80px;left: 5; top: 5;position: fixed">-->
+        <!-- radial-gradient(circle, transparent 0%, rgba(0,0,0,1) 100%) -->
+        <!-- radial-gradient(circle, rgba(0,249,255,0) 0%, rgba(9,15,121,1) 35%, rgba(0,0,0,1) 100%) -->
+        <div id="instaMonkeysHeader" style="position: absolute;left: 50%;transform: translate(-50%, 0);">
+            <img id="instaLabel" src="./Images/UI/InstaMonkeysHeader.png" class="instaHeader" style="width: 500px;height: 90px;">
+            <img id="goBack" src="./Images/UI/BackBtn.png" style="width: 80px;height: 80px;left: -340; top: 5;position: fixed;margin-left:-100px;opacity: 0" onclick="goBack()">
+        </div>
+        <div id="towerContainers" style="color: black;width:1000px;height: auto;margin-top:100px;position: absolute;margin-left: 120px;text-align: left;">
+            
+        </div>
+        <div id="instaContainers" style="color: black;width:1000px;height: auto;margin-top:100px;position: absolute;margin-left: 120px;text-align: left;">
+            
+        </div>
+    </div>
+    <div id="makechallenge" style="height: auto;">
+    </div>
+    <div id="settings" style="height: auto;">
+    </div>
+</div>
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var dailyChallengeRaw = "";
+        var currentDailyChallengeID = "943";
+        var dailyChallenge = {};
+        var dailyChallengeData = {};
+        var dailyChallengeData2 = {};
+        var dailyChallengeData3 = {};
+
+        //Containers
+        var saveData = {
+            "DartMonkey": {},
+            "BoomerangMonkey": {},
+            "BombShooter": {},
+            "TackShooter": {},
+            "IceMonkey": {},
+            "GlueGunner": {},
+            "SniperMonkey": {},
+            "MonkeySub": {},
+            "MonkeyBuccaneer": {},
+            "MonkeyAce": {},
+            "HeliPilot": {},
+            "MortarMonkey": {},
+            "DartlingGunner": {},
+            "Wizard": {},
+            "SuperMonkey": {},
+            "NinjaMonkey": {},
+            "Alchemist": {},
+            "Druid": {},
+            "BananaFarm": {},
+            "SpikeFactory": {},
+            "MonkeyVillage": {},
+            "EngineerMonkey": {}
+        };
+        var towers = ["DartMonkey", "BoomerangMonkey","BombShooter","TackShooter","IceMonkey","GlueGunner","SniperMonkey","MonkeySub","MonkeyBuccaneer","MonkeyAce","HeliPilot","MortarMonkey","DartlingGunner","Wizard","SuperMonkey","NinjaMonkey","Alchemist","Druid","BananaFarm", "SpikeFactory", "MonkeyVillage","EngineerMonkey"];
+        var towersEng = ["Dart Monkey", "Boomerang Monkey","Bomb Shooter","Tack Shooter","Ice Monkey","Glue Gunner","Sniper Monkey","Monkey Sub","Monkey Buccaneer","Monkey Ace","Heli Pilot","Mortar Monkey","Dartling Gunner","Wizard Monkey","Super Monkey","Ninja Monkey","Alchemist","Druid","Banana Farm", "Spike Factory", "Monkey Village","Engineer Monkey"];
+        var collectionOrder = ["520","502","510","501","500","250","052","150","051","050","205","025","105","015","005","420","402","410","401","400","240","042","140","041","040","204","024","104","014","004","320","302","310","301","300","230","032","130","031","030","203","023","103","013","003","220","202","210","201","200","022","120","021","020","102","012","002","110","101","100","011","010","001","000"]
+
+        document.getElementById('file').addEventListener('change', function () {
+            var reader = new FileReader();
+            reader.onload = function () {
+
+                var arrayBuffer = this.result,
+                    array = new Uint8Array(arrayBuffer);
+                document.getElementById('dgdata').value = JSON.stringify(JSON.parse(decode(array)), null, '\t');
+                //temp = (encode(decode(array)));
+                //console.log([...array]);
+
+            }
+            reader.readAsArrayBuffer(this.files[0]);
+        });
+
+        let decode = buf => (new TextDecoder).decode(buf.map((b, i) => b - (21 + (i - 14) % 6))).substr(14);
+        let encode = str => {
+            let buf = (new TextEncoder).encode(str);
+            let header = "DGDATA" + hash1(buf);
+            //buf = (new TextEncoder).encode(header + str);
+            buf = buf.map((b, i) => {
+                b += 21;
+                b += i % 6;
+                b %= 256;
+                return b;
+            });
+            return new Uint8Array([...(new TextEncoder).encode(header)].concat([...buf]));
+        }
+        let hash1 = buf => {
+            let hash = 0;
+            let loc2 = 0;
+            buf.forEach((s, i) => {
+                hash = ((hash >> 8) & 16777215) ^ hash2((hash ^ s) & 255);
+            });
+            if (hash < 0) {
+                hash = 4294967295 + hash + 1;
+            }
+            hash = hash.toString(16);
+            while (hash.length < 8) {
+                hash = "0" + hash;
+            }
+            return hash;
+        }
+        let hash2 = num => {
+            let loc4 = 3988292384;
+            for (let i = 0; i < 8; i++) {
+                if (num & 1) {
+                    num = num >> 1;
+                    num = num ^ loc4;
+                } else {
+                    num = num >> 1;
+                }
+            }
+            return num;
+        }
+        let download = () => {
+            let input = document.getElementById('dgdata').value;
+            try{
+                input = JSON.stringify(JSON.parse(input));
+            } catch (e){
+                alert('Invalid JSON!');
+                return;
+            }
+            let data = encode(input);
+            console.log(data);
+            let fileName = document.getElementById('file').files[0].name;
+            let type = "application/data";
+            let a = document.createElement("a"),
+                file = new Blob([data], { type: type });
+            if (window.navigator.msSaveOrOpenBlob) // IE10+
+                window.navigator.msSaveOrOpenBlob(file, fileName);
+            else { // Others
+                var url = URL.createObjectURL(file);
+                a.href = url;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(function () {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                }, 0);
+            }
+        }
+
+        function generate() {
+            readTextFile(`https://priority-static-api.nkstatic.com/storage/static/multi?appid=11&files=dailyChallenges/${currentDailyChallengeID},%20HTTP/1.1`,
+                function(err, data) {
+                if (err !== null) {
+                    alert('Something went wrong: ' + err);
+                } else {
+                    dailyChallengeRaw = new Uint8Array(data);
+                    document.getElementById('dgdata').value = JSON.stringify(JSON.parse(decode(dailyChallengeRaw)), null, '\t');
+                }
+                dailyChallenge = JSON.parse(decode(dailyChallengeRaw));
+                dailyChallengeData = JSON.parse(dailyChallenge.data);
+                dailyChallengeData2 = JSON.parse(dailyChallengeData[`dailyChallenges/${currentDailyChallengeID}`]);
+                dailyChallengeData3 = JSON.stringify(dailyChallengeData2, null, '\t');
+            });
+        }
+
+        function generatestruct() {
+            document.getElementById('dgdata').value = JSON.stringify(dailyChallengeData2, null, '\t');
+        }
+
+        function readTextFile(url, callback)
+         {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.responseType = 'arraybuffer';
+            xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+            xhr.onload = function() {
+                var status = xhr.status;
+                if (status === 200) {
+                    callback(null, xhr.response);
+                } else {
+                    callback(status, xhr.response);
+                }
+            };
+            xhr.send();
+         }
+
+        function dailychallengeid() {
+            currentDailyChallengeID = document.getElementById('dcidtxt').value;
+        }
+
+        $(document).ready(function(){
+            $("generate").click(function(){
+                $.ajax({url: `https://priority-static-api.nkstatic.com/storage/static/multi?appid=11&files=dailyChallenges/${currentDailyChallengeID},%20HTTP/1.1`, contentType: "application/x-www-form-urlencoded;charset=UTF-8", dataType: "text", xhrFields: "setRequestHeader('Access-Control-Allow-Origin', '*')", success: function(result){
+                    //$("dgdata").html(result);
+                    console.log("yes");
+                    var arrayBuffer = xhr.response;
+                    array = new Uint8Array(arrayBuffer);
+                    dailyChallengeData = array;
+                    //JSON.stringify(JSON.parse(decode(array)), null, '\t');
+                    //dailyChallengeData = this.result;
+                    document.getElementById('dgdata').value = JSON.stringify(JSON.parse(decode(array)), null, '\t');
+                }});
+            });
+        });
+
+function changemode(mode) {
+    switch (mode) {
+    case 0:
+        hideAllBesidesOne('getchallenge');
+        break;
+    case 1:
+        hideAllBesidesOne('dailychallenge');
+        break;
+    case 2:
+        hideAllBesidesOne('odyssey');
+        break;
+    case 3:
+        hideAllBesidesOne('race');
+        break;
+    case 4:
+        hideAllBesidesOne('insta');
+        document.getElementById("instaMonkeysHeader").classList.add("instaHeader");
+        break;
+    case 5:
+        hideAllBesidesOne('settings');
+        break;
+    case 6:
+        hideAllBesidesOne('makechallenge');
+        break;
+    }
+}
+
+function hideAllBesidesOne(mode){
+    document.getElementById('getchallenge').style.display = "none";
+    document.getElementById('dailychallenge').style.display = "none";
+    document.getElementById('odyssey').style.display = "none";
+    document.getElementById('race').style.display = "none";
+    document.getElementById('insta').style.display = "none";
+    document.getElementById('makechallenge').style.display = "none";
+    document.getElementById('settings').style.display = "none";
+    document.getElementById(mode).style.display = "block";
+}
+window.addEventListener('load', () => {
+    makeContainers();
+});
+
+            let makeContainers = () => {
+                let output = document.getElementById('towerContainers');
+                towers.forEach(t => {
+                    var panel = document.createElement('div');
+                    panel.className = 'containerPanel';
+                    panel.id = `container${t}`;
+                    panel.addEventListener('click', function() {
+                        //this.classList.add = "clickEffect";
+                        clickContainer(t);
+                    });
+
+                    let container = document.createElement('img');
+                    container.className = 'containerBG';
+                    container.src = `./Images/UI/InstaTowersContainer.png`
+                    panel.appendChild(container);
+
+                    let newTower = document.createElement('img');
+                    newTower.className = 'containerTower';
+                    newTower.src = `./Images/TowerIcons/000-${t}.png`
+                    panel.appendChild(newTower);
+                    output.appendChild(panel);
+
+                    let newText = document.createElement('h1');
+                    newText.className = 'containerText';
+                    newText.innerHTML = towersEng[towers.indexOf(t)];
+                    panel.appendChild(newText);
+                    output.appendChild(panel);
+                });
+            }
+
+function clickContainer(type){
+    //Removeanim from header
+    //Add anim to other header
+    document.getElementById('towerContainers').style.display = "none";
+    document.getElementById('instaContainers').style.display = "block";
+    document.getElementById('instaContainers').innerHTML = "";
+    document.getElementById("goBack").classList.remove("goBackSlide");
+    document.getElementById("goBack").classList.remove("goBackExit");
+    document.getElementById("goBack").classList.add("goBackSlide");
+    document.getElementById("instaLabel").classList.remove("instaHeaderExit");
+    document.getElementById("instaLabel").classList.remove("instaHeader");
+    document.getElementById("instaLabel").classList.add("instaHeaderExit");
+    console.log(type);
+    generateInstas(type);
+
+}
+
+function goBack(){
+    document.getElementById('instaContainers').style.display = "none";
+    document.getElementById('towerContainers').style.display = "block";
+    document.getElementById("instaLabel").classList.remove("instaHeader");
+    document.getElementById("instaLabel").classList.remove("instaHeaderExit");
+    document.getElementById("instaLabel").classList.add("instaHeader");
+
+    document.getElementById("goBack").classList.remove("goBackSlide");
+    document.getElementById("goBack").classList.remove("goBackExit");
+    document.getElementById("goBack").classList.add("goBackExit");
+}
+
+function generateInstas(type) {
+    var instas = Object.keys(saveData[type]);
+    var instasSorted = [];
+
+    collectionOrder.forEach((instatype, i) => {
+        //if(instas.includes(instatype)){
+            instasSorted.push(instatype);
+        //}
+    });
+    instasSorted.forEach((instatype, i) => {
+                    var first = instatype.charAt(0);
+                    var second = instatype.charAt(1); 
+                    var third = instatype.charAt(2);
+
+                    var output = document.getElementById('instaContainers');
+                    var panel = document.createElement('div');
+                    panel.className = 'instaPanel';
+                    panel.id = `instaPanel${instatype}-${type}`;
+                    /*panel.addEventListener('click', function() {
+                        //this.classList.add = "clickEffect";
+                        clickContainer(t);
+                    });*/
+
+                    let maximum;
+
+                    if(first > second && first > third){
+                        maximum = 1
+                    }
+                    else if(second > third && second > first){
+                        maximum = 2
+                    }
+                    else if(third > first && third > second){
+                        maximum = 3
+                    }
+                    else if(first == second) {
+                        maximum = 2   
+                    }
+                    else if(first == third) {
+                        maximum = 1
+                    }
+                    else if(second == third){
+                        maximum = 2
+                    }
+                    else {
+                        maximum = 3
+                    }
+
+                    let instaImgNum;
+                    switch(maximum) {
+                        case 1:
+                        instaImgNum = `${first}00`;
+                        break;
+                        case 2:
+                        instaImgNum = `0${second}0`;
+                        break;
+                        case 3:
+                        instaImgNum = `00${third}`;
+                        break;
+                    }
+
+                    let container = document.createElement('img');
+                    container.className = 'instaBG';
+                    container.src = `./Images/Insta/${instaImgNum}-${type}Insta.png`
+                    panel.appendChild(container);
+
+                    let newText = document.createElement('h1');
+                    newText.className = 'instaText';
+                    newText.innerHTML = `${first}-${second}-${third}`;
+                    panel.appendChild(newText);
+                    output.appendChild(panel);
+    });
+}
+
+function clickTower(type){
+
+}
+
+//on change of amount
+function changeInstaAmount(){
+
+}
+
+function addInsta(){
+    saveData[towers[0]] = {};
+    saveData[towers[0]]["000"] = 1;
+    saveData[towers[0]]["401"] = 1;
+    saveData[towers[0]]["500"] = 1;
+    saveData[towers[0]]["203"] = 1;
+    console.log(saveData);
+}
+
+function removeInsta(){
+
+}
+
+    </script>
+</body>
+</html>
